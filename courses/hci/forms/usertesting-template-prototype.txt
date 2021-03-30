@@ -1,0 +1,29 @@
+(Please do NOT just copy paste from examples below. This is just a general template. You should design the tasks by yourself)
+
+
+Introduction
+You decide to explore [topic, product, service] and arrive at this [page, website].
+
+Tasks
+**Read all tasks out loud and remember to share your thoughts as you perform each task.**
+You will be using a prototype: a design that's not completely finished yet. You can interact with it just like you would any other website. If something does not work, explain what you would expect to happen and move on. **Verbally acknowledge that you understand the limitations of the prototype.**
+Go to [URL of prototype]. When you see the website, move on to the next task.
+Without leaving the page, in your own words, describe what this [page, website] offers. Remember that this is a prototype: a design that's not completely finished yet.
+In your own words, describe how you might benefit from using this [page, website].
+Without leaving the page, what, if anything, draws your attention or stands out to you? Explain your answer.
+Take as much time as you need to [activity description]. Move on to the next task when you’re done. Remember that this is a prototype: a design that's not completely finished yet. You can interact with it just like you would any other website. If something does not work, explain what you would expect to happen and move on.
+Overall this task was...? Explain your answer. [7-point Rating Scale: Very difficult to Very easy]
+How not confident (1) or confident (7) are you that you completed the task successfully? Explain your answer. [5-point Rating Scale: Not At All Confident to Very Confident]
+What, if anything, **was easy** about [activity description] using the [page, website]?
+What, if anything, **was difficult** about [activity description] using the [page, website]?
+Now that you’ve used the prototype, in your own words, describe what this [page, website] offers.
+Go to [URL of prototype]. When you see the website, move on to the next task.
+Without leaving the page, in your own words, what do you think would happen if you selected [button, link, or widget name]?
+What, if anything, makes you **want** to use the [page, website] again?
+What, if anything, makes you **not want** to use the [page, website] again?
+What, if anything, was **missing** when [activity description]?
+What, if anything, was **confusing** when [activity description]?
+I understood who the [name] website was for and what I could do there. Explain your answer. [7-point Rating Scale: Strongly disagree to Strongly agree]
+Questions
+Share your final comments or thoughts on the [name] [page, website].
+How likely are you to recommend this [page, website] to a friend or colleague? 0 = Not At All Likely, 10 = Very Likely
