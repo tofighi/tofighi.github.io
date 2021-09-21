@@ -1,0 +1,14 @@
+h1 {
+    color: blue;
+    font-family: verdana;
+    font-size: 5px;
+}
+
+p {
+    color: rgb(36, 68, 208);
+}
+
+table, th, td {
+    border: 1px solid rgb(12, 1, 1);
+    border-collapse: collapse;
+  }
