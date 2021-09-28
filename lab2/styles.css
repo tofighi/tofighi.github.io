@@ -1,0 +1,52 @@
+
+/* This is a multi-line CSS comment 
+that spans across more than one line */
+
+#paragraph2 {
+  text-align: CENTER;
+  color: rgb(47, 255, 0);
+}
+
+.red_class {
+    CoLOR:red;
+}
+
+p.red_class {
+    text-align: center;
+
+}
+
+p,h1,h2,h3 {
+    border-style: dashed;
+    border-width: 5px;
+}
+
+p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 150px;
+    margin-left: 80px;
+}
+
+p{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 80px;
+}
+
+
+a:link, a:visited {
+    color: white;    
+    background-color: #1ebba3;    
+    display: inline-block;
+    padding: 5px 20px;
+    border: 2px solid #099983;
+    text-decoration: none;
+    text-align: right;
+    font: 17px Arial, sans-serif;  
+}
+a:hover, a:active {
+    background-color: #9c6ae1;
+    border-color: #7443b6;
+}
