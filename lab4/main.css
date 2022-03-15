@@ -1,0 +1,63 @@
+body {
+    font-family: SansSerif;
+    text-align: justify;
+    padding: 10px;
+    margin: auto;
+    background-color: #e2e6ea
+}
+
+.profile {
+    background-color: #e2e6ea;
+    padding: 10px;
+}
+
+
+table {
+    border-collapse: collapse;
+}
+
+.headings {
+    color: #0080FFFF;
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align: left;
+}
+
+.dates {
+    text-align: right;
+}
+
+.my-container {
+    background-color: white;
+    border: 100px black;
+    align-content: center;
+    /*display: flex;*/
+    justify-content: center;
+    gap: 5px;
+
+}
+
+.my-col {
+    padding: 1rem;
+    background-color: white;
+    border: 2px white;
+}
+
+.my-row{
+    padding: 10px;
+}
+
+.circular--landscape {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.circular--landscape img {
+    width: auto;
+    height: 100%;
+    margin-left: -50px;
+}
