@@ -1,0 +1,9 @@
+
+nohup java -jar my.jar &
+
+Manifest.txt (should contain the name of main class
+and new line after it):
+
+Main-Class: my
+
+jar cfm my.jar Manifest.txt *.class
