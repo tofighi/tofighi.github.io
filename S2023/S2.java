@@ -43,6 +43,12 @@ public class S2 {
                     Rectangle captureArea = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
                     BufferedImage img = r.createScreenCapture(captureArea);
 
+                    // Add
+                    Point mouse = MouseInfo.getPointerInfo().getLocation();
+					Graphics g = img.getGraphics();
+					g.setColor(Color.BLACK);
+					g.fillRect(mouse.x, mouse.y, 10, 10);
+
                     // Scale down the captured image based on the provided scale factor
                     int scaledWidth = (int) (img.getWidth() * scale);
                     int scaledHeight = (int) (img.getHeight() * scale);
@@ -67,8 +73,8 @@ public class S2 {
 
                     long compressedFileSize = compressedImageStream.size();
 
-                    System.out.println("Original File Size: " + originalFileSize + " bytes");
-                    System.out.println("Compressed File Size: " + compressedFileSize + " bytes");
+                   // System.out.println("Original File Size: " + originalFileSize + " bytes");
+                   // System.out.println("Compressed File Size: " + compressedFileSize + " bytes");
 
                     // Send the compressed image
                     outstream.write(compressedImageStream.toByteArray());
