@@ -1,0 +1,18 @@
+        h1{
+            background-color: yellow;
+        }
+        p{
+            background-color: rgb(102, 102, 229);
+            color: white;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        main p {
+            background-color: rgb(102, 229, 102);
+            color: black;
+        }
