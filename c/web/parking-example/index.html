@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Parking Rate Calculator</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2em;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      display: block;
+      margin: 10px 0;
+      padding: 6px;
+      font-size: 16px;
+    }
+    label {
+      display: inline-block;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+    button {
+      display: block;
+      margin-top: 10px;
+      padding: 5px 10px;
+    }
+    h2 {
+      margin-top: 30px;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Parking Rate Calculator</h1>
+
+  <input type="text" id="hoursInput" placeholder="How many hours?" />
+  <label for="weekendCheck">Are you parking on a weekend?</label>
+  <input type="checkbox" id="weekendCheck" />
+  <button id="calculateBtn">Calculate</button>
+
+  <h2>Total Cost</h2>
+  <p id="parkingFees">Parking Fees: $0.00</p>
+  <p id="taxAmount">Tax: $0.00</p>
+  <p id="totalCost">Total: $0.00</p>
+
+  <script src="app.js"></script>
+</body>
+</html>
