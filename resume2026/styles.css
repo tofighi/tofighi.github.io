@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background:  linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow:  0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+header {
+    background:  linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #fff;
+    text-align: center;
+    padding: 50px 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom:  10px;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #bdc3c7;
+    margin-bottom: 20px;
+}
+
+.contact-info a {
+    color: #3498db;
+    text-decoration:  none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color:  #5dade2;
+}
+
+main {
+    padding: 40px;
+}
+
+section {
+    margin-bottom: 35px;
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    color: #555;
+    font-size: 1.05rem;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+}
+
+.skills-list li {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius:  20px;
+    font-size: 0.9rem;
+}
+
+.experience-item,
+.education-item {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border-left: 3px solid #3498db;
+}
+
+. experience-item h3,
+.education-item h3 {
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.date,
+.institution {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin:  5px 0;
+}
+
+.experience-item p: last-child {
+    color: #555;
+}
+
+footer {
+    background: #ecf0f1;
+    text-align: center;
+    padding: 20px;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .tagline {
+        font-size:  1rem;
+    }
+    
+    main {
+        padding: 25px;
+    }
+    
+    .skills-list li {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
