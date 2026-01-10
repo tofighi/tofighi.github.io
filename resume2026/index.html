@@ -3,63 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghassem Tofighi - Resume</title>
+    <title>Ghassem Tofighi - Professional Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="background-decor"></div>
     <div class="container">
         <header>
-            <h1>Ghassem Tofighi</h1>
-            <p class="tagline">Web Developer & Computer Science Researcher</p>
-            <div class="contact-info">
-                <a href="mailto: gtofighi@torontomu.ca">gtofighi@torontomu.ca</a>
+            <div class="header-content">
+                <h1 id="user-name">Ghassem Tofighi</h1>
+                <p class="tagline">Professor, Researcher & Engineer</p>
+                <p class="specialization">Deep Learning | Computer Vision | Machine Learning</p>
+                <div class="contact-info">
+                    <a href="mailto:me@ghassem.com">me@ghassem.com</a> | 
+                    <a href="https://ghassem.com" target="_blank">ghassem.com</a> |
+                    <a href="http://bit.ly/GhassemLinkedin" target="_blank">LinkedIn</a>
+                </div>
+                <div class="congrats-container">
+                    <button id="congrats-btn" class="glow-button">🎉 Send Congratulations</button>
+                    <button id="celebrate-btn" class="glow-button secondary">✨ Celebrate Success</button>
+                </div>
+            </div>
+            
+            <div class="widgets-top">
+                <div id="weather-widget" class="widget">
+                    <div class="widget-loader">Loading Weather...</div>
+                </div>
+                <div class="clocks-container">
+                    <div class="clock-wrapper">
+                        <div class="clock" id="clock-toronto">
+                            <div class="hand hour"></div>
+                            <div class="hand minute"></div>
+                            <div class="hand second"></div>
+                            <div class="center-dot"></div>
+                        </div>
+                        <span>Toronto</span>
+                    </div>
+                    <div class="clock-wrapper">
+                        <div class="clock" id="clock-sf">
+                            <div class="hand hour"></div>
+                            <div class="hand minute"></div>
+                            <div class="hand second"></div>
+                            <div class="center-dot"></div>
+                        </div>
+                        <span>San Francisco</span>
+                    </div>
+                </div>
             </div>
         </header>
 
         <main>
-            <section class="about">
-                <h2>About Me</h2>
-                <p>I am a passionate web developer and computer science researcher dedicated to building innovative web solutions and advancing research in the field of computer science. </p>
-            </section>
+            <div class="main-grid">
+                <div class="content-column">
+                    <section class="summary">
+                        <h2>Professional Summary</h2>
+                        <p>Dedicating over a decade to the fields of Deep Learning, Computer Vision, and Machine Learning. Currently serving as a Professor at Sheridan College and Director at Sina Media Lab, with a focus on cognitive computing and innovative media technologies.</p>
+                    </section>
 
-            <section class="skills">
-                <h2>Skills</h2>
-                <ul class="skills-list">
-                    <li>HTML5</li>
-                    <li>CSS3</li>
-                    <li>JavaScript</li>
-                    <li>Research & Analysis</li>
-                    <li>Problem Solving</li>
-                    <li>Technical Writing</li>
-                </ul>
-            </section>
+                    <section class="experience">
+                        <h2>Experience</h2>
+                        <div class="experience-item">
+                            <div class="exp-header">
+                                <h3>Professor of Cognitive Computing</h3>
+                                <span class="exp-org">Sheridan College</span>
+                            </div>
+                            <p class="date">Present</p>
+                            <p>School of Applied Computing. Teaching and researching advanced Machine Learning techniques.</p>
+                        </div>
+                        <div class="experience-item">
+                            <div class="exp-header">
+                                <h3>Director</h3>
+                                <span class="exp-org">Sina Media Lab</span>
+                            </div>
+                            <p class="date">Present</p>
+                            <p>Leading research and development in cutting-edge media processing and AI solutions.</p>
+                        </div>
+                        <div class="experience-item">
+                            <div class="exp-header">
+                                <h3>Research Scientist</h3>
+                                <span class="exp-org">Konica Minolta Laboratory U.S.A.</span>
+                            </div>
+                            <p class="location">San Mateo, CA</p>
+                            <p>Developed intelligent patient-care systems using deep learning and computer vision. Researched human detection and cell segmentation.</p>
+                        </div>
+                    </section>
+                </div>
 
-            <section class="experience">
-                <h2>Experience</h2>
-                <div class="experience-item">
-                    <h3>Web Developer</h3>
-                    <p class="date">Present</p>
-                    <p>Designing and developing responsive, user-friendly websites using modern web technologies. </p>
-                </div>
-                <div class="experience-item">
-                    <h3>Computer Science Researcher</h3>
-                    <p class="date">Present</p>
-                    <p>Conducting research in computer science, analyzing data, and contributing to academic publications.</p>
-                </div>
-            </section>
+                <div class="sidebar-column">
+                    <section class="news-feed">
+                        <h2><span class="news-icon">🇨🇦</span> Canada News</h2>
+                        <div id="news-container">
+                            <div class="widget-loader">Fetching latest news...</div>
+                        </div>
+                    </section>
 
-            <section class="education">
-                <h2>Education</h2>
-                <div class="education-item">
-                    <h3>Computer Science</h3>
-                    <p class="institution">Toronto Metropolitan University</p>
+                    <section class="skills">
+                        <h2>Skills</h2>
+                        <div class="skills-group">
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">OpenCV</span>
+                            <span class="skill-tag">AWS</span>
+                        </div>
+                    </section>
+
+                    <section class="education">
+                        <h2>Education</h2>
+                        <div class="edu-item">
+                            <strong>Ph.D. in Electrical & Computer Engineering</strong>
+                            <p>Toronto Metropolitan University (2017)</p>
+                        </div>
+                        <div class="edu-item">
+                            <strong>M.Sc. in Artificial Intelligence</strong>
+                            <p>University of Isfahan</p>
+                        </div>
+                    </section>
                 </div>
-            </section>
+            </div>
         </main>
 
         <footer>
-            <p>&copy; 2026 Ghassem Tofighi. All rights reserved.</p>
+            <p>&copy; 2026 Ghassem Tofighi. Built with modern web technologies.</p>
         </footer>
     </div>
+    
+    <canvas id="canvas-effects"></canvas>
+    <script src="main.js"></script>
 </body>
 </html>
