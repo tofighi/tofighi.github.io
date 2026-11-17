@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10243b">
+  <meta name="description" content="An interactive, browser-based EVM calculator for project cost and schedule performance, with task-by-task entry, variance percentages, forecasts, charts and PERT estimating.">
+  <title>Module 8 | Earned Value Management Calculator</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#15263b;background:#f3f6fa;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.55}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #57abf6;outline-offset:2px}header{background:linear-gradient(112deg,#10243b,#17486b);color:#fff;padding:32px max(20px,calc((100vw - 1220px)/2)) 30px}header .eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:#9bdcff;font-weight:750}h1{font-size:clamp(1.55rem,3.1vw,2.5rem);letter-spacing:-.045em;margin:9px 0 10px}header p{color:#d1e6f4;margin:0;max-width:800px;line-height:1.55}main{max-width:1260px;margin:0 auto;padding:24px 20px 70px}.toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.actions{display:flex;flex-wrap:wrap;gap:8px}.button{border:1px solid #b9c9d6;background:#fff;color:#17324b;font-weight:700;padding:10px 14px;border-radius:10px;display:inline-flex;align-items:center;gap:7px;justify-content:center}.button:hover{background:#eaf3fc}.button.primary{background:#176a9e;color:#fff;border-color:#176a9e}.button.primary:hover{background:#115781}.button.danger{color:#b12d3c}.button.tiny{padding:6px 9px;font-size:.82rem}.meta{font-size:.81rem;color:#587085}.panel{background:#fff;border:1px solid #dce5ed;border-radius:16px;box-shadow:0 4px 18px #233c5420;padding:22px;margin-bottom:20px}.section-title{margin:0 0 5px;font-size:1.25rem;letter-spacing:-.025em}.section-sub{margin:0 0 18px;color:#557088;font-size:.91rem;line-height:1.5}.layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.field label{font-size:.82rem;font-weight:750;color:#41576d}.field input,.field select{border:1px solid #c6d4df;background:#fff;border-radius:9px;min-height:42px;padding:9px 10px;width:100%;color:#15263b}.field small{font-size:.75rem;color:#62788a}.form-grid{display:grid;grid-template-columns:2fr repeat(4,minmax(105px,1fr));gap:12px;align-items:end}.submit-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}.notice{color:#63798a;font-size:.83rem}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.stat{background:#fff;border:1px solid #dae5ec;border-radius:14px;padding:16px;min-width:0;box-shadow:0 3px 13px #193d5710}.stat .key{color:#577086;font-size:.77rem;font-weight:800;letter-spacing:.025em}.stat .val{font-size:clamp(1.25rem,2.1vw,1.95rem);font-weight:800;letter-spacing:-.04em;margin:7px 0 3px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.stat .detail{font-size:.76rem;color:#687c8d}.stat.good .val{color:#167453}.stat.bad .val{color:#b63442}.stat.neutral .val{color:#1d547e}.project-controls{display:grid;grid-template-columns:2.2fr 1fr;gap:15px;max-width:660px;margin-bottom:14px}.table-scroll{overflow-x:auto;border:1px solid #dfe6ee;border-radius:12px}table{width:100%;border-collapse:collapse;text-align:right;font-size:.84rem}thead{background:#edf3f8}th{color:#385166;font-size:.75rem;font-weight:800;padding:11px 10px;white-space:nowrap}td{padding:9px 10px;border-top:1px solid #e6edf2;font-variant-numeric:tabular-nums;white-space:nowrap}td:first-child,th:first-child{text-align:left}td input{min-width:72px;width:100%;max-width:130px;background:#fff;border:1px solid #cddce7;border-radius:7px;padding:7px 7px;text-align:right}td.name input{text-align:left;min-width:175px;max-width:260px}tr:hover td{background:#fafcff}tfoot td{font-weight:800;background:#eaf2f9;border-top:2px solid #bacddd}tfoot td:first-child{text-align:left}.muted{color:#758899}.goodtext{color:#12704e;font-weight:750}.badtext{color:#ac3442;font-weight:750}.pill{display:inline-block;border-radius:20px;font-size:.75rem;padding:4px 8px;font-weight:800}.pill.good{color:#076743;background:#def6eb}.pill.bad{color:#a42d38;background:#fde9eb}.pill.na{color:#526779;background:#edf2f5}.below-table{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:13px}.compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.compare .box{padding:16px;border:1px solid #dfe8ee;border-radius:12px;background:#f9fbfc}.compare h3{font-size:.96rem;margin:0 0 8px}.compare .number{font-weight:850;font-size:1.6rem;letter-spacing:-.03em}.compare p{margin:6px 0 0;color:#587187;font-size:.85rem}.bar-wrap{margin-top:12px;height:13px;background:#e8edf1;border-radius:100px;overflow:hidden}.bar{height:100%;border-radius:100px;transition:width .15s}.bar.pv{background:#8da8ba}.bar.ev{background:#287da6}.bar.ac{background:#d19b46}.legend{display:flex;gap:15px;flex-wrap:wrap;color:#476177;font-size:.82rem;margin-top:12px}.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}.explain{margin:0;color:#425c70;line-height:1.65}.note{border-left:4px solid #2b7eae;background:#edf7fc;padding:12px 14px;margin-top:15px;font-size:.87rem;line-height:1.6}.formula-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.formula{background:#f5f8fb;border:1px solid #e0e9ef;border-radius:9px;padding:12px;font-size:.86rem}.formula strong{display:block;margin-bottom:4px}.formula code{font-size:.85rem;color:#135f88}.pert-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.pert-output{margin-top:10px;background:#f0f8fb;padding:13px;border-radius:10px;color:#244b66;font-weight:750;font-variant-numeric:tabular-nums}.pert-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}.pert-header{margin:0 0 12px;font-size:.97rem}details summary{font-weight:800;cursor:pointer;font-size:1.05rem}details[open] summary{margin-bottom:16px}.footer{font-size:.77rem;color:#697e8e;text-align:center;margin-top:16px}.empty{text-align:center;padding:36px 14px;color:#647b8c}.hidden-input{display:none}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:1000px){.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid .field:first-child{grid-column:1/-1}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:680px){header{padding:27px 18px}main{padding:15px 12px 50px}.panel{padding:17px}.stats{gap:8px}.stat{padding:12px}.form-grid,.project-controls,.layout,.compare,.pert-columns,.pert-fields,.formula-grid{grid-template-columns:1fr}.form-grid .field:first-child{grid-column:auto}.section-sub{font-size:.85rem}.actions{width:100%}.actions .button{flex:1 1 auto}}@media print{header{background:#fff;color:#000;padding:20px 0}header p,.eyebrow{color:#333!important}.toolbar,.form-panel,.button,details,.footer,.below-table{display:none!important}main{padding:0}.panel,.stat{box-shadow:none;break-inside:avoid}td input{border:0;background:transparent}} 
+  </style>
+
+  <style>
+  .forecast-controls{display:grid;grid-template-columns:minmax(240px,2fr) minmax(180px,1fr);gap:14px;margin-bottom:17px;max-width:800px}
+  .chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+  .chart-box{border:1px solid #e0e8ef;border-radius:12px;padding:15px;background:#fafcff;min-width:0}
+  .chart-box h3{margin:0 0 12px;font-size:.95rem;color:#304a60}
+  .chart-canvas{overflow-x:auto;min-height:230px}
+  .chart-canvas svg{display:block;max-width:100%;height:auto}
+  .chart-empty{padding:70px 10px;text-align:center;color:#647b8c;font-size:.88rem}
+  @media(max-width:760px){.chart-grid,.forecast-controls{grid-template-columns:1fr}}
+  @media print{.chart-box{break-inside:avoid}.chart-grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Construction Project Controls • Module 8</div>
+  <h1>Earned Value Management Calculator</h1>
+  <p>Add construction tasks one by one. For each task, enter its approved budget, planned completion, actual physical completion and actual cost. Project totals, interpretations, forecasts and charts update automatically.</p>
+</header>
+<main>
+  <div class="toolbar">
+    <div class="meta" id="saveStatus" role="status" aria-live="polite">Data is saved in this browser.</div>
+    <div class="actions">
+      <button type="button" class="button" id="sampleButton">Load TMU example</button>
+      <button type="button" class="button" id="exportCsvButton">Export CSV</button>
+      <button type="button" class="button" id="exportJsonButton">Backup JSON</button>
+      <button type="button" class="button" id="importButton">Import JSON</button>
+      <button type="button" class="button" id="printButton">Print</button>
+      <button type="button" class="button danger" id="clearButton">Clear tasks</button>
+      <input class="hidden-input" type="file" accept="application/json,.json" id="importFile" aria-label="Import saved project JSON">
+    </div>
+  </div>
+  <section class="panel" aria-labelledby="project-heading">
+    <h2 class="section-title" id="project-heading">Project setup</h2>
+    <p class="section-sub">The performance baseline covers the tasks in this calculator. It does not necessarily equal the full development or financing budget.</p>
+    <div class="project-controls">
+      <div class="field"><label for="projectName">Project name</label><input id="projectName" value="TMU Church &amp; McGill Student Residence" maxlength="140"></div>
+      <div class="field"><label for="statusDate">Status date</label><input id="statusDate" type="date" value="2026-10-31"></div>
+    </div>
+  </section>
+  <section class="panel form-panel" aria-labelledby="add-heading">
+    <h2 class="section-title" id="add-heading">+ Add a task / work package</h2>
+    <p class="section-sub">Enter one task at a time. Use a task's <strong>total approved budget</strong> (not its spending so far). Progress percentages refer to physical work completed.</p>
+    <form id="taskForm">
+      <div class="form-grid">
+        <div class="field"><label for="taskName">Task / work package *</label><input id="taskName" required placeholder="e.g., Mechanical rough-in" maxlength="110"></div>
+        <div class="field"><label for="taskBudget">Task budget (BAC), $ *</label><input id="taskBudget" type="number" min="0" step="0.01" required placeholder="500000"></div>
+        <div class="field"><label for="taskPlanned">Planned progress, % *</label><input id="taskPlanned" type="number" min="0" max="100" step="0.01" required placeholder="60"></div>
+        <div class="field"><label for="taskActual">Actual progress, % *</label><input id="taskActual" type="number" min="0" max="100" step="0.01" required placeholder="45"></div>
+        <div class="field"><label for="taskCost">Actual cost (AC), $ *</label><input id="taskCost" type="number" min="0" step="0.01" required placeholder="300000"></div>
+      </div>
+      <div class="submit-row"><span class="notice">All five inputs are required. You can edit or delete tasks later.</span><button class="button primary" type="submit">+ Add task &amp; update total</button></div>
+    </form>
+  </section>
+  <section aria-labelledby="summary-heading">
+    <h2 class="section-title" id="summary-heading" style="margin-bottom:12px">Project-wide EVM totals</h2>
+    <div class="stats" id="statGrid" aria-live="polite"></div>
+  </section>
+  <section class="panel" aria-labelledby="tasks-heading">
+    <h2 class="section-title" id="tasks-heading">Task register &amp; calculations</h2>
+    <p class="section-sub">Edit any white input directly in the table. PV, EV, variances and indices recalculate immediately. Scroll horizontally on smaller screens.</p>
+    <div class="table-scroll"><table id="taskTable"><thead><tr><th scope="col">Task</th><th scope="col" title="Budget at Completion">BAC ($)</th><th scope="col">Planned (%)</th><th scope="col">Actual (%)</th><th scope="col">AC ($)</th><th scope="col" title="Planned Value">PV ($)</th><th scope="col" title="Earned Value">EV ($)</th><th scope="col" title="Cost Variance">CV ($)</th><th scope="col" title="Schedule Variance">SV ($)</th><th scope="col" title="Cost Variance Percent">CV%</th><th scope="col" title="Schedule Variance Percent">SV%</th><th scope="col" title="Cost Performance Index">CPI</th><th scope="col" title="Schedule Performance Index">SPI</th><th scope="col">Actions</th></tr></thead><tbody id="taskRows"></tbody><tfoot id="totalRow"></tfoot></table></div>
+    <div class="below-table"><span class="meta" id="taskCount">0 tasks</span><button type="button" class="button primary" id="addAnotherButton">+ Add another task</button></div>
+  </section>
+  <section class="panel" aria-labelledby="interpret-heading">
+    <h2 class="section-title" id="interpret-heading">What do the totals mean?</h2>
+    <p class="section-sub">These statements are based on the sum of all tasks, not the average of task-level CPI or SPI.</p>
+    <div class="compare"><div class="box"><h3>Cost performance</h3><div class="number" id="costHeadline">—</div><p id="costInterpretation">Add a task to begin.</p></div><div class="box"><h3>Schedule performance</h3><div class="number" id="scheduleHeadline">—</div><p id="scheduleInterpretation">Add a task to begin.</p></div></div>
+    <div class="note" id="percentageInterpretation" aria-live="polite"></div>
+    <div style="margin-top:17px"><strong style="font-size:.88rem">Cumulative budget-value comparison</strong><div id="bars"></div><div class="legend"><span><i class="dot" style="background:#8da8ba"></i>PV: planned value</span><span><i class="dot" style="background:#287da6"></i>EV: earned value</span><span><i class="dot" style="background:#d19b46"></i>AC: actual cost</span></div></div>
+    <div class="note"><strong>Important:</strong> EVM schedule variance (SV) is measured in <em>budget dollars</em>, not in days or weeks. A negative SPI signals less earned work than scheduled, but it does not directly predict the completion date. Cost forecasting is a scenario-based extension of the Module 8 metrics. EAC and ETC are estimates, not contractual commitments or schedule completion dates.</div>
+  </section>
+
+  <section class="panel" aria-labelledby="forecast-heading">
+    <h2 class="section-title" id="forecast-heading">Cost forecasts &amp; completion outlook</h2>
+    <p class="section-sub">Choose an assumption about the remaining work. Forecast values update with every task edit. These are <strong>cost forecasts</strong>; SPI cannot reliably be converted into a finish date without an updated critical-path schedule.</p>
+    <div class="forecast-controls">
+      <div class="field"><label for="forecastMethod">Estimate at Completion (EAC) approach</label>
+        <select id="forecastMethod">
+          <option value="cpi">Current cost efficiency continues: BAC / CPI</option>
+          <option value="budget">Remaining work meets its original budget: AC + (BAC − EV)</option>
+          <option value="combined">Cost and schedule pressure persist: AC + (BAC − EV) / (CPI × SPI)</option>
+          <option value="manual">Management estimate of remaining work: AC + manual ETC</option>
+        </select>
+      </div>
+      <div class="field"><label for="manualEtc">Manual remaining cost (ETC), $</label><input id="manualEtc" type="number" min="0" step="0.01" placeholder="Enter management estimate" disabled></div>
+    </div>
+    <div class="stats" id="forecastGrid" aria-live="polite"></div>
+    <div class="compare">
+      <div class="box"><h3>EAC interpretation</h3><p id="forecastInterpretation">Enter tasks to calculate a forecast.</p></div>
+      <div class="box"><h3>TCPI interpretation</h3><p id="tcpiInterpretation">Enter tasks to calculate the required future efficiency.</p></div>
+    </div>
+    <div class="note"><strong>Forecast limitations:</strong> EAC uses selected assumptions; the combined CPI × SPI method is a simplified cost-risk scenario, not an automatic time forecast. TCPI against BAC is undefined when the remaining baseline budget is zero; non-positive CPI/SPI can also make certain forecast formulas unavailable. Rebaseline only through approved change control.</div>
+  </section>
+  <section class="panel" aria-labelledby="charts-heading">
+    <h2 class="section-title" id="charts-heading">Visual performance dashboard</h2>
+    <p class="section-sub">Live charts use the current status snapshot. Each task is a separate work package, not a historical time-series point.</p>
+    <div class="chart-grid">
+      <div class="chart-box"><h3>Portfolio values and forecast</h3><div id="summaryChart" class="chart-canvas" role="img" aria-label="Bar chart comparing BAC, PV, EV, AC and EAC"></div></div>
+      <div class="chart-box"><h3>Cost variance by task</h3><div id="costChart" class="chart-canvas" role="img" aria-label="Task-by-task cost variance chart"></div></div>
+      <div class="chart-box"><h3>Schedule variance by task</h3><div id="scheduleChart" class="chart-canvas" role="img" aria-label="Task-by-task schedule variance chart"></div></div>
+      <div class="chart-box"><h3>Planned versus earned progress</h3><div id="progressChart" class="chart-canvas" role="img" aria-label="Task-by-task planned and earned budget chart"></div></div>
+    </div>
+    <p class="notice" style="margin-top:13px">For a true S-curve over time, the project must record dated monthly PV, EV and AC snapshots; the current calculator does not invent past months.</p>
+  </section>
+  <section class="panel" aria-labelledby="pert-heading">
+    <details id="pertDetails"><summary id="pert-heading">Optional: PERT three-point estimator for schedule <em>and</em> cost</summary>
+      <p class="section-sub">Enter optimistic (O), most likely (M) and pessimistic (P) estimates. The PERT-weighted expected estimate is (O + 4M + P) / 6. The standard deviation is (P − O) / 6. Schedule and cost use the same formula but different units. These are planning estimates, not current EVM performance indicators.</p>
+      <div class="pert-columns">
+        <div><h3 class="pert-header">Duration estimate (weeks)</h3><div class="pert-fields"><div class="field"><label for="durationO">Optimistic O</label><input id="durationO" type="number" min="0" step="any" placeholder="6"></div><div class="field"><label for="durationM">Most likely M</label><input id="durationM" type="number" min="0" step="any" placeholder="8"></div><div class="field"><label for="durationP">Pessimistic P</label><input id="durationP" type="number" min="0" step="any" placeholder="14"></div></div><div class="pert-output" id="durationResult" aria-live="polite">Enter three duration estimates.</div></div>
+        <div><h3 class="pert-header">Cost estimate (CAD)</h3><div class="pert-fields"><div class="field"><label for="costO">Optimistic O</label><input id="costO" type="number" min="0" step="any" placeholder="400000"></div><div class="field"><label for="costM">Most likely M</label><input id="costM" type="number" min="0" step="any" placeholder="500000"></div><div class="field"><label for="costP">Pessimistic P</label><input id="costP" type="number" min="0" step="any" placeholder="700000"></div></div><div class="pert-output" id="costResult" aria-live="polite">Enter three cost estimates.</div><button type="button" class="button tiny" id="usePertCost" style="margin-top:10px" disabled>Use expected cost in new task budget</button></div>
+      </div>
+      <p class="notice" style="margin-top:15px">The expected cost is transferred to the task form only when you click the button; approved task budgets remain editable. Estimated duration is not used as a substitute for physical progress.</p>
+    </details>
+  </section>
+  <section class="panel" aria-labelledby="formulas-heading">
+    <h2 class="section-title" id="formulas-heading">EVM formulas &amp; terminology</h2>
+    <p class="section-sub">All measures are calculated as of the selected status date using the approved budget and reported progress of each work package.</p>
+    <div class="formula-grid"><div class="formula"><strong>BAC — Budget at Completion</strong><code>Σ task budgets</code></div><div class="formula"><strong>PV / BCWS — Planned Value</strong><code>Σ (BAC × planned %)</code></div><div class="formula"><strong>EV / BCWP — Earned Value</strong><code>Σ (BAC × actual %)</code></div><div class="formula"><strong>AC / ACWP — Actual Cost</strong><code>Σ actual costs</code></div><div class="formula"><strong>CV — Cost Variance</strong><code>EV − AC</code></div><div class="formula"><strong>SV — Schedule Variance</strong><code>EV − PV</code></div><div class="formula"><strong>CV% — Cost Variance Percent</strong><code>(EV − AC) / EV × 100</code></div><div class="formula"><strong>SV% — Schedule Variance Percent</strong><code>(EV − PV) / PV × 100</code></div><div class="formula"><strong>CPI — Cost Performance Index</strong><code>EV / AC</code></div><div class="formula"><strong>SPI — Schedule Performance Index</strong><code>EV / PV</code></div><div class="formula"><strong>EAC — Estimate at Completion</strong><code>BAC / CPI</code> (selected scenario)</div><div class="formula"><strong>ETC — Estimate to Complete</strong><code>EAC − AC</code></div><div class="formula"><strong>VAC — Variance at Completion</strong><code>BAC − EAC</code></div><div class="formula"><strong>TCPI (against BAC)</strong><code>(BAC − EV) / (BAC − AC)</code></div><div class="formula"><strong>TCPI (against EAC)</strong><code>(BAC − EV) / (EAC − AC)</code></div></div>
+  </section>
+  <p class="footer">Educational tool • Single HTML file • No external libraries • Project data stays in your browser unless you export it. TMU scenario is fictional.</p>
+</main>
+<script>
+(()=>{'use strict';
+  const STORAGE='module8-evm-calculator-v1';
+  const $=id=>document.getElementById(id);
+  const money=n=>new Intl.NumberFormat('en-CA',{style:'currency',currency:'CAD',minimumFractionDigits:0,maximumFractionDigits:2}).format(n);
+  const numeral=n=>new Intl.NumberFormat('en-CA',{maximumFractionDigits:2}).format(n);
+  const index=n=>Number.isFinite(n)?n.toFixed(3):'—';
+  const percent=n=>n===null||!Number.isFinite(n)?'—':`${numeral(n)}%`;
+  const ratio=(numerator,denominator)=>denominator>0?numerator/denominator:null;
+  const eps=1e-9;
+  const sample=[
+    {id:'t1',name:'Pre-Construction & Permits',budget:1200000,planned:100,actual:100,cost:1150000},
+    {id:'t2',name:'Substructure & Excavation',budget:4500000,planned:100,actual:85,cost:4700000},
+    {id:'t3',name:'Superstructure Framing',budget:12000000,planned:40,actual:25,cost:3400000},
+    {id:'t4',name:'Exterior Enclosure',budget:6000000,planned:10,actual:0,cost:150000}
+  ];
+  const fresh=()=>({projectName:'TMU Church & McGill Student Residence',statusDate:'2026-10-31',tasks:sample.map(x=>({...x}))});
+  let state=load();
+  function validTask(t){return t&&typeof t.name==='string'&&Number.isFinite(Number(t.budget))&&Number(t.budget)>=0&&Number.isFinite(Number(t.planned))&&Number(t.planned)>=0&&Number(t.planned)<=100&&Number.isFinite(Number(t.actual))&&Number(t.actual)>=0&&Number(t.actual)<=100&&Number.isFinite(Number(t.cost))&&Number(t.cost)>=0}
+  function load(){try{const s=JSON.parse(localStorage.getItem(STORAGE));if(s&&Array.isArray(s.tasks)&&s.tasks.length<=1000&&s.tasks.every(validTask))return {projectName:String(s.projectName||'Untitled project').slice(0,140),statusDate:String(s.statusDate||'2026-10-31'),tasks:s.tasks.map(t=>({id:String(t.id||newId()),name:String(t.name).slice(0,110),budget:Number(t.budget),planned:Number(t.planned),actual:Number(t.actual),cost:Number(t.cost)}))};}catch(e){}return fresh()}
+  function newId(){return 'task-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10)}
+  function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state));$('saveStatus').textContent='Saved automatically in this browser.';}catch(e){$('saveStatus').textContent='Browser storage unavailable. Export JSON to save your work.';}}
+  function metrics(t){const pv=t.budget*t.planned/100,ev=t.budget*t.actual/100,ac=t.cost;return {bac:t.budget,pv,ev,ac,cv:ev-ac,sv:ev-pv,cvPct:ratio(100*(ev-ac),ev),svPct:ratio(100*(ev-pv),pv),cpi:ratio(ev,ac),spi:ratio(ev,pv)}}
+  function totals(){const a={bac:0,pv:0,ev:0,ac:0,cv:0,sv:0,cpi:null,spi:null,cvPct:null,svPct:null};state.tasks.forEach(t=>{const m=metrics(t);for(const k of ['bac','pv','ev','ac'])a[k]+=m[k]});a.cv=a.ev-a.ac;a.sv=a.ev-a.pv;a.cpi=ratio(a.ev,a.ac);a.spi=ratio(a.ev,a.pv);a.cvPct=ratio(100*a.cv,a.ev);a.svPct=ratio(100*a.sv,a.pv);return a}
+  function cleanText(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  function signedClass(n){return n<-.005?'badtext':n>.005?'goodtext':''}
+  function showValue(v){return v===null?'—':index(v)}
+  function tdInput(t,field,type,min,max){const input=document.createElement('input');input.type=type;input.value=t[field];input.dataset.id=t.id;input.dataset.field=field;input.setAttribute('aria-label',`${field} for ${t.name}`);if(type==='number'){input.min=min;input.step='.01';if(max!==undefined)input.max=max;}else input.maxLength=110;return input}
+  function drawTable(){const tbody=$('taskRows');tbody.replaceChildren();for(const t of state.tasks){const m=metrics(t),tr=document.createElement('tr');const name=document.createElement('td');name.className='name';name.append(tdInput(t,'name','text'));tr.append(name);for(const f of ['budget','planned','actual','cost']){const cell=document.createElement('td');cell.append(tdInput(t,f,'number',0,['planned','actual'].includes(f)?100:undefined));tr.append(cell)}for(const [f,value] of [['pv',money(m.pv)],['ev',money(m.ev)],['cv',money(m.cv)],['sv',money(m.sv)],['cvPct',percent(m.cvPct)],['svPct',percent(m.svPct)],['cpi',showValue(m.cpi)],['spi',showValue(m.spi)]]){const cell=document.createElement('td');cell.textContent=value;if(['cv','sv'].includes(f))cell.className=signedClass(m[f]);tr.append(cell)}const del=document.createElement('td'),btn=document.createElement('button');btn.type='button';btn.className='button tiny danger';btn.textContent='Remove';btn.dataset.remove=t.id;btn.setAttribute('aria-label',`Remove ${t.name}`);del.append(btn);tr.append(del);tbody.append(tr)}
+    const m=totals();const tr=document.createElement('tr');for(const value of ['TOTAL',money(m.bac),'—','—',money(m.ac),money(m.pv),money(m.ev),money(m.cv),money(m.sv),percent(m.cvPct),percent(m.svPct),showValue(m.cpi),showValue(m.spi),'']){const td=document.createElement('td');td.textContent=value;tr.append(td)}$('totalRow').replaceChildren(tr);$('taskCount').textContent=`${state.tasks.length} task${state.tasks.length===1?'':'s'} included in totals`;
+    if(!state.tasks.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=14;td.className='empty';td.textContent='No tasks yet. Add your first task above to build project-wide totals.';tr.append(td);tbody.append(tr)} }
+  function stat(label,value,detail,kind){return `<article class="stat ${kind||'neutral'}"><div class="key">${label}</div><div class="val">${value}</div><div class="detail">${detail}</div></article>`}
+  function drawSummary(){const m=totals(),any=state.tasks.length>0;const classify=n=>n===null?'neutral':n<1-1e-9?'bad':n>1+1e-9?'good':'neutral';$('statGrid').innerHTML=[stat('BAC · Total task budgets',money(m.bac),'Approved work-package budget'),stat('PV · Planned Value',money(m.pv),'Budgeted value scheduled'),stat('EV · Earned Value',money(m.ev),'Budgeted value actually earned'),stat('AC · Actual Cost',money(m.ac),'Actual spending to date'),stat('CV · Cost Variance',money(m.cv),'EV − AC',!any?'neutral':m.cv<-.005?'bad':m.cv>.005?'good':'neutral'),stat('SV · Schedule Variance',money(m.sv),'EV − PV (budget dollars)',!any?'neutral':m.sv<-.005?'bad':m.sv>.005?'good':'neutral'),stat('CV% · Cost variance %',percent(m.cvPct),'(EV − AC) ÷ EV × 100',m.cvPct===null?'neutral':m.cvPct<0?'bad':m.cvPct>0?'good':'neutral'),stat('SV% · Schedule variance %',percent(m.svPct),'(EV − PV) ÷ PV × 100',m.svPct===null?'neutral':m.svPct<0?'bad':m.svPct>0?'good':'neutral'),stat('CPI · Cost Performance Index',showValue(m.cpi),'EV ÷ AC',classify(m.cpi)),stat('SPI · Schedule Performance Index',showValue(m.spi),'EV ÷ PV',classify(m.spi))].join('');
+    $('costHeadline').textContent=any&&m.cpi!==null?index(m.cpi):'—';$('scheduleHeadline').textContent=any&&m.spi!==null?index(m.spi):'—';
+    $('costInterpretation').textContent=!any?'Add a task to begin.':m.ac===0?'CPI is undefined when AC = 0.':Math.abs(m.cpi-1)<1e-9?'On budget: earned work equals its actual cost.':m.cpi<1?`Over budget: each $1.00 spent earned ${money(m.cpi)} of budgeted work. CV = ${money(m.cv)}.`:`Under budget: each $1.00 spent earned ${money(m.cpi)} of budgeted work. CV = ${money(m.cv)}.`;
+    $('scheduleInterpretation').textContent=!any?'Add a task to begin.':m.pv===0?'SPI is undefined when PV = 0.':Math.abs(m.spi-1)<1e-9?'On plan: earned value equals planned value.':m.spi<1?`Behind the planned work: ${numeral(m.spi*100)}% of scheduled budgeted value has been earned. SV = ${money(m.sv)}.`:`Ahead of the planned work: ${numeral(m.spi*100)}% of scheduled budgeted value has been earned. SV = ${money(m.sv)}.`;
+    $('percentageInterpretation').textContent=!any?'CV% and SV% will appear after tasks are entered.':`CV% = ${percent(m.cvPct)}: ${m.cvPct===null?'undefined because earned value is zero':m.cvPct<-.00001?'negative means the value of completed work is below its actual cost':m.cvPct>.00001?'positive means completed work cost less than its earned value':'zero means earned value equals actual cost'}. SV% = ${percent(m.svPct)}: ${m.svPct===null?'undefined because planned value is zero':m.svPct<-.00001?'negative means less budgeted work was earned than scheduled':m.svPct>.00001?'positive means more budgeted work was earned than scheduled':'zero means work earned matches work planned'}. These percentages use EV and PV as their respective denominators.`;
+    const max=Math.max(m.pv,m.ev,m.ac,1);$('bars').innerHTML=[['PV',m.pv,'pv'],['EV',m.ev,'ev'],['AC',m.ac,'ac']].map(([label,value,klass])=>`<div style="display:grid;grid-template-columns:43px 1fr 125px;align-items:center;gap:9px;margin-top:10px;font-size:.8rem"><strong>${label}</strong><div class="bar-wrap" style="margin:0"><div class="bar ${klass}" style="width:${100*value/max}%"></div></div><span style="text-align:right;font-variant-numeric:tabular-nums">${money(value)}</span></div>`).join(''); }
+  function render(){drawTable();drawSummary();drawForecastAndCharts()}
+  $('taskForm').addEventListener('submit',e=>{e.preventDefault();const name=$('taskName').value.trim(),budget=+$('taskBudget').value,planned=+$('taskPlanned').value,actual=+$('taskActual').value,cost=+$('taskCost').value;const task={id:newId(),name,budget,planned,actual,cost};if(!name||!validTask(task)){alert('Please enter a task name, non-negative amounts and progress percentages between 0 and 100.');return}state.tasks.push(task);save();render();$('taskForm').reset();$('taskName').focus();});
+  // Input is validated before the project totals are changed; blanks do not silently become zero.
+  $('taskRows').addEventListener('input',e=>{const input=e.target;if(!input.matches('input[data-id]'))return;const t=state.tasks.find(t=>t.id===input.dataset.id);if(!t)return;const f=input.dataset.field;if(f==='name'){if(!input.value.trim()){input.setCustomValidity('Name cannot be empty');return}input.setCustomValidity('');t.name=input.value;save();return}if(input.value===''){input.setCustomValidity('Enter a number');return}const n=Number(input.value);if(!Number.isFinite(n)||n<0||(['planned','actual'].includes(f)&&n>100)){input.setCustomValidity('Enter a valid non-negative amount or percentage between 0 and 100');return}input.setCustomValidity('');t[f]=n;save();updateExistingTableRows();drawSummary();drawForecastAndCharts()});
+  $('taskRows').addEventListener('change',e=>{if(e.target.matches('input[data-id]')){render()}});
+  $('taskRows').addEventListener('click',e=>{const b=e.target.closest('button[data-remove]');if(!b)return;const t=state.tasks.find(x=>x.id===b.dataset.remove);if(!t)return;if(confirm(`Remove “${t.name}” from the project?`)){state.tasks=state.tasks.filter(x=>x.id!==t.id);save();render()}});
+  function updateExistingTableRows(){const ts=$('taskRows').rows;for(let i=0;i<state.tasks.length;i++){const m=metrics(state.tasks[i]),cells=ts[i].cells;const values=[money(m.pv),money(m.ev),money(m.cv),money(m.sv),percent(m.cvPct),percent(m.svPct),showValue(m.cpi),showValue(m.spi)];values.forEach((v,j)=>{cells[j+5].textContent=v;if(j===2||j===3)cells[j+5].className=signedClass(j===2?m.cv:m.sv)})}const m=totals(),cells=$('totalRow').rows[0].cells;[money(m.bac),'—','—',money(m.ac),money(m.pv),money(m.ev),money(m.cv),money(m.sv),percent(m.cvPct),percent(m.svPct),showValue(m.cpi),showValue(m.spi)].forEach((v,i)=>cells[i+1].textContent=v)}
+  $('addAnotherButton').addEventListener('click',()=>{$('taskName').focus();$('taskForm').scrollIntoView({behavior:'smooth',block:'center'})});
+  $('projectName').addEventListener('input',e=>{state.projectName=e.target.value;save()});$('statusDate').addEventListener('change',e=>{state.statusDate=e.target.value;save()});
+  $('sampleButton').addEventListener('click',()=>{if(confirm('Replace your current project with the four-task TMU Month 8 example? Export JSON first if you need a backup.')){state=fresh();$('projectName').value=state.projectName;$('statusDate').value=state.statusDate;save();render()}});
+  $('clearButton').addEventListener('click',()=>{if(confirm('Clear all tasks? You can export a backup first.')){state.tasks=[];save();render()}});
+  function download(content,name,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000)}
+  function filename(ext){const safe=(state.projectName||'EVM_Project').replace(/[^a-z0-9_-]+/gi,'_').replace(/^_+|_+$/g,'').slice(0,55);return `${safe||'EVM_Project'}_${state.statusDate||'status'}.${ext}`}
+  function csvCell(s){return '"'+String(s).replace(/"/g,'""')+'"'}
+  $('exportCsvButton').addEventListener('click',()=>{const header=['Task','BAC','Planned %','Actual %','AC','PV','EV','CV','SV','CV%','SV%','CPI','SPI'],lines=[header.map(csvCell).join(',')];for(const t of state.tasks){const m=metrics(t);lines.push([t.name,t.budget,t.planned,t.actual,t.cost,m.pv,m.ev,m.cv,m.sv,m.cvPct===null?'':m.cvPct,m.svPct===null?'':m.svPct,m.cpi===null?'':m.cpi,m.spi===null?'':m.spi].map(csvCell).join(','))}const m=totals();lines.push(['TOTAL',m.bac,'','',m.ac,m.pv,m.ev,m.cv,m.sv,m.cvPct===null?'':m.cvPct,m.svPct===null?'':m.svPct,m.cpi===null?'':m.cpi,m.spi===null?'':m.spi].map(csvCell).join(','));download('\ufeff'+lines.join('\r\n'),filename('csv'),'text/csv;charset=utf-8')});
+  $('exportJsonButton').addEventListener('click',()=>download(JSON.stringify({version:1,...state},null,2),filename('json'),'application/json'));
+  $('importButton').addEventListener('click',()=>$('importFile').click());$('importFile').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj||!Array.isArray(obj.tasks)||obj.tasks.length>1000||!obj.tasks.every(validTask))throw Error('Invalid project data');if(!confirm('Replace the current project with this imported backup?'))return;state={projectName:String(obj.projectName||'Imported project').slice(0,140),statusDate:String(obj.statusDate||''),tasks:obj.tasks.map(t=>({id:newId(),name:String(t.name).slice(0,110),budget:Number(t.budget),planned:Number(t.planned),actual:Number(t.actual),cost:Number(t.cost)}))};$('projectName').value=state.projectName;$('statusDate').value=state.statusDate;save();render()}catch(err){alert('Could not import this JSON file. Please select an exported EVM project backup.')}finally{e.target.value=''}});
+  $('printButton').addEventListener('click',()=>window.print());
+  let pertExpectedCost=null;
+  function calculatePert(prefix,formatter){const values=['O','M','P'].map(s=>$(prefix+s).value),output=$(prefix+'Result');if(values.some(v=>v==='')){output.textContent='Enter three '+(prefix==='cost'?'cost':'duration')+' estimates.';return null}const [o,m,p]=values.map(Number);if([o,m,p].some(v=>!Number.isFinite(v)||v<0)||o>m||m>p){output.textContent='Use non-negative values with O ≤ M ≤ P.';return null}const expected=(o+4*m+p)/6,sd=(p-o)/6;output.textContent=`Expected: ${formatter(expected)} · Standard deviation: ${formatter(sd)} · Variance: ${numeral(sd*sd)}${prefix==='duration'?' weeks²':' CAD²'}`;return expected}
+  function updatePert(){calculatePert('duration',n=>numeral(n)+' weeks');pertExpectedCost=calculatePert('cost',money);$('usePertCost').disabled=pertExpectedCost===null}
+  for(const id of ['durationO','durationM','durationP','costO','costM','costP'])$(id).addEventListener('input',updatePert);
+  $('usePertCost').addEventListener('click',()=>{if(pertExpectedCost===null)return;$('taskBudget').value=pertExpectedCost.toFixed(2);$('taskName').focus();$('taskForm').scrollIntoView({behavior:'smooth',block:'center'})});
+
+  function forecast(m){
+    const remaining=Math.max(0,m.bac-m.ev),method=$('forecastMethod').value;
+    let eac=null,desc='';
+    if(method==='cpi') {desc='Assumes the observed CPI continues for all remaining work.';if(m.cpi!==null&&m.cpi>eps)eac=m.bac/m.cpi;}
+    else if(method==='budget') {desc='Assumes remaining work is delivered at its original budgeted cost.';eac=m.ac+remaining;}
+    else if(method==='combined') {desc='Assumes both cost and schedule pressure affect remaining cost; this is a sensitivity scenario.';if(m.cpi!==null&&m.cpi>eps&&m.spi!==null&&m.spi>eps)eac=m.ac+remaining/(m.cpi*m.spi);}
+    else {desc='Uses the management-entered remaining cost estimate (manual ETC).';const val=$('manualEtc').value;if(val!==''&&Number.isFinite(+val)&&+val>=0)eac=m.ac+(+val);}
+    // Once all baseline work has actually been earned, no more estimated work remains.
+    if(remaining<=eps && method!=='manual')eac=m.ac;
+    const etc=eac===null?null:Math.max(0,eac-m.ac),vac=eac===null?null:m.bac-eac;
+    const tcpiB=remaining<=eps?0:ratio(remaining,m.bac-m.ac);
+    const tcpiE=remaining<=eps?0:etc!==null?ratio(remaining,etc):null;
+    return {eac,etc,vac,tcpiB,tcpiE,remaining,desc,method};
+  }
+  function forecastStat(name,value,caption,kind='neutral'){return stat(name,value,caption,kind)}
+  function drawForecastAndCharts(){
+    const m=totals(),any=state.tasks.length>0,f=forecast(m);
+    const moneyOr=v=>v===null?'—':money(v),indexOr=v=>v===null?'—':index(v);
+    $('forecastGrid').innerHTML=[
+      forecastStat('EAC · Completion estimate',moneyOr(any?f.eac:null),'Selected estimate of final total cost',f.vac===null?'neutral':f.vac<0?'bad':'good'),
+      forecastStat('ETC · Cost to finish',moneyOr(any?f.etc:null),'Estimated additional spending'),
+      forecastStat('VAC · Completion variance',moneyOr(any?f.vac:null),'BAC − EAC',f.vac===null?'neutral':f.vac<0?'bad':'good'),
+      forecastStat('TCPI · Against BAC',indexOr(any?f.tcpiB:null),'Required future CPI to meet BAC',f.tcpiB===null?'neutral':f.tcpiB>1?'bad':'good'),
+      forecastStat('TCPI · Against EAC',indexOr(any?f.tcpiE:null),'Required future CPI to meet selected EAC',f.tcpiE===null?'neutral':f.tcpiE>1?'bad':'good'),
+      forecastStat('Remaining earned work',money(any?f.remaining:0),'BAC − EV, measured at budgeted value')
+    ].join('');
+    $('forecastInterpretation').textContent=!any?'Add tasks to see completion estimates.':f.eac===null?`Cannot calculate EAC using the selected method. ${f.desc} Check CPI/SPI or enter manual ETC.`:`${f.desc} Estimated final cost ${money(f.eac)} is ${f.vac<0?money(-f.vac)+' above':money(f.vac)+' below'} BAC (${money(m.bac)}). This is a scenario, not an approved revised budget.`;
+    $('tcpiInterpretation').textContent=!any?'Add tasks to see required future efficiency.':f.remaining<=eps?'All baseline work has been earned; no future work efficiency is required.':f.tcpiB===null?`TCPI against BAC is undefined: BAC − AC is zero or negative while work remains. ${m.ac>=m.bac?'The approved budget is already exhausted.':''}`:`To finish within BAC, each $1 of remaining permitted spending must deliver ${index(f.tcpiB)} of budgeted work (TCPI = ${index(f.tcpiB)}). ${f.tcpiB>1?'Future efficiency must exceed 1.0; this may be difficult.':'The target is at or below 1.0.'} ${f.tcpiE===null?'TCPI against EAC is unavailable with this forecast.':`Against selected EAC, required TCPI = ${index(f.tcpiE)}.`}`;
+    drawCharts(m,f);
+  }
+  const svgns='http://www.w3.org/2000/svg';
+  function svgNode(tag,attrs={},textContent){const el=document.createElementNS(svgns,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,String(v));if(textContent!==undefined)el.textContent=textContent;return el;}
+  function svgChart(id,items,{diverging=false,paired=false}={}){
+    const host=$(id);host.replaceChildren();if(!state.tasks.length||!items.length){const el=document.createElement('div');el.className='chart-empty';el.textContent='Add tasks to display this chart.';host.append(el);return;}
+    const height=paired?Math.max(260,items.length*43+65):Math.max(250,items.length*40+60),width=740;
+    const left=235,right=100,top=18,inner=width-left-right,row=paired?43:40;
+    const svg=svgNode('svg',{viewBox:`0 0 ${width} ${height}`,width,height,role:'img'});
+    const max=Math.max(...items.flatMap(i=>i.values.map(v=>Math.abs(v))),1);
+    const minValue=diverging?Math.min(0,...items.flatMap(i=>i.values)):0;
+    const maxValue=diverging?Math.max(0,...items.flatMap(i=>i.values)):max;
+    const span=(maxValue-minValue)||1;
+    const coord=v=>left+(v-minValue)/span*inner;
+    if(diverging){svg.append(svgNode('line',{x1:coord(0),x2:coord(0),y1:10,y2:height-28,stroke:'#758b9b','stroke-width':1.5}));}
+    const label=v=>new Intl.NumberFormat('en-CA',{notation:'compact',maximumFractionDigits:2}).format(v);
+    items.forEach((item,i)=>{
+      const cy=top+i*row+row/2;
+      const name=item.name.length>30?item.name.slice(0,28)+'…':item.name;
+      svg.append(svgNode('text',{x:left-12,y:cy+4,'text-anchor':'end','font-size':12,fill:'#385166'},name));
+      item.values.forEach((val,j)=>{
+        const h=paired?11:17,y=paired?cy-13+j*13:cy-9;
+        const x=Math.min(coord(0),coord(val)),w=Math.max(Math.abs(coord(val)-coord(0)),val===0?1:0);
+        const colors=paired?['#9aafbe','#257ba2']:diverging?[val<0?'#c04e57':'#168768']:['#257ba2','#c69a55','#168768','#ba5058','#815cad'];
+        svg.append(svgNode('rect',{x,y,width:w,height:h,rx:3,fill:colors[j%colors.length]}));
+      });
+      const annotated=item.values.map(label).join(' / ');
+      svg.append(svgNode('text',{x:width-right+10,y:cy+4,'font-size':10.5,fill:'#496276'},annotated));
+    });
+    svg.append(svgNode('text',{x:width-6,y:height-7,'font-size':10,fill:'#6a8191','text-anchor':'end'},'CAD • task snapshot'));
+    host.append(svg);
+  }
+  function drawCharts(m,f){
+    const a=[['BAC',m.bac],['PV',m.pv],['EV',m.ev],['AC',m.ac]];
+    if(f.eac!==null)a.push(['EAC',f.eac]);
+    svgChart('summaryChart',a.map(([name,n])=>({name,values:[n]})));
+    svgChart('costChart',state.tasks.map(t=>({name:t.name,values:[metrics(t).cv]})),{diverging:true});
+    svgChart('scheduleChart',state.tasks.map(t=>({name:t.name,values:[metrics(t).sv]})),{diverging:true});
+    svgChart('progressChart',state.tasks.map(t=>{const x=metrics(t);return {name:t.name,values:[x.pv,x.ev]}}),{paired:true});
+    // Accessible full-value descriptions, including smaller items that could be visually hard to read.
+    for(const [id,descs] of [
+      ['summaryChart',a.map(([k,v])=>`${k}: ${money(v)}`)],
+      ['costChart',state.tasks.map(t=>`${t.name}: ${money(metrics(t).cv)}`)],
+      ['scheduleChart',state.tasks.map(t=>`${t.name}: ${money(metrics(t).sv)}`)],
+      ['progressChart',state.tasks.map(t=>`${t.name}: PV ${money(metrics(t).pv)}, EV ${money(metrics(t).ev)}`)]
+    ])$(id).setAttribute('aria-label',descs.join('; '));
+  }
+  $('forecastMethod').addEventListener('change',()=>{$('manualEtc').disabled=$('forecastMethod').value!=='manual';drawForecastAndCharts()});
+  $('manualEtc').addEventListener('input',drawForecastAndCharts);
+
+  $('projectName').value=state.projectName;$('statusDate').value=state.statusDate;render();save();
+})();
+</script>
+</body>
+</html>
